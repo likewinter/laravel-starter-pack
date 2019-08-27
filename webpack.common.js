@@ -44,6 +44,14 @@ module.exports = {
                 include: path.resolve(__dirname, 'resources/css'),
                 use: [
                     'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: [
+                                require('autoprefixer')
+                            ]
+                        }
+                    },
                     'resolve-url-loader',
                 ]
             },
@@ -51,6 +59,14 @@ module.exports = {
                 test: /\.s[ac]ss$/i,
                 use: [
                     'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: [
+                                require('autoprefixer')
+                            ]
+                        }
+                    },
                     'sass-loader',
                 ],
             },

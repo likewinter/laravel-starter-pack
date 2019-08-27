@@ -13,10 +13,6 @@
     <script src="{{ asset_webpack('vendor.js') }}" defer></script>
     <script src="{{ asset_webpack('app.js') }}" defer></script>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
     <!-- Styles -->
     <link href="{{ asset_webpack('app.css') }}" rel="stylesheet">
 </head>
