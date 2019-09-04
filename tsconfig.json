@@ -1,0 +1,9 @@
+{
+    "include": [
+        "resources/js/**/*.ts"
+    ],
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "sourceMap": true
+    }
+}

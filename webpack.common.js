@@ -26,7 +26,7 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
-                exclude: /(node_modules)/,
+                exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
                     options: {
@@ -34,6 +34,19 @@ module.exports = {
                         plugins: ['@babel/plugin-transform-runtime']
                     }
                 }
+            },
+            {
+                test: /\.ts$/,
+                exclude: /node_modules/,
+                use: [
+                    'babel-loader',
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            appendTsSuffixTo: [/\.vue$/]
+                        }
+                    },
+                ]
             },
             {
                 test: /\.vue$/,
@@ -86,6 +99,7 @@ module.exports = {
         ]
     },
     resolve: {
+        extensions: ['.ts', '.js', '.vue'],
         alias: {
             vue$: 'vue/dist/vue.esm.js'
         }

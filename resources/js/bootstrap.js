@@ -13,12 +13,16 @@ axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
  * a simple convenience so we don't have to attach every token manually.
  */
 
-const token = document.head.querySelector('meta[name="csrf-token"]')
-
-if (token) {
-    axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content
+const csrfToken = document.head.querySelector('meta[name="csrf-token"]')
+if (csrfToken) {
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken.content
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token')
+}
+
+const apiToken = window.__API_TOKEN
+if (apiToken) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${apiToken}`
 }
 
 /**
