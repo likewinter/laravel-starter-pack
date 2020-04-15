@@ -2,13 +2,15 @@ const path = require('path')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
+const ROOT = path.resolve(__dirname, '../')
+
 module.exports = {
     entry: {
         app: ['./resources/js/app.js', './resources/sass/app.sass']
     },
-    plugins: [new ManifestPlugin(), new VueLoaderPlugin()],
+    plugins: [new ManifestPlugin({ writeToFileEmit: true }), new VueLoaderPlugin()],
     output: {
-        path: path.resolve(__dirname, 'public/')
+        path: path.resolve(ROOT, 'public/')
     },
     optimization: {
         splitChunks: {
@@ -54,7 +56,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                include: path.resolve(__dirname, 'resources/css'),
+                include: path.resolve(ROOT, 'resources/css'),
                 use: [
                     'css-loader',
                     {

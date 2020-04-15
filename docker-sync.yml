@@ -1,0 +1,9 @@
+version: "2"
+
+compose-dev-file-path: 'docker-compose.dev.yml'
+
+syncs:
+  app-sync:
+    src: './'
+    sync_excludes: ['.git', '.idea', 'node_modules']
+    sync_userid: 1000

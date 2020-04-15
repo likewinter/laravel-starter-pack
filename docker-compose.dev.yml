@@ -1,0 +1,41 @@
+version: "3.7"
+services:
+  app:
+    volumes:
+      - app-sync:/var/www:nocopy
+      - ./docker-compose/php/local.dev.ini:/usr/local/etc/php/conf.d/local.ini
+  db:
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    ports:
+      - "5432:5432"
+  web:
+    ports:
+      - "8000:80"
+    volumes:
+      - app-sync:/var/www:nocopy
+      - ./docker-compose/nginx/conf.d.dev/:/etc/nginx/conf.d/
+  front-hot:
+    image: library/node:lts-alpine
+    working_dir: /app
+    volumes:
+      - ./resources:/app/resources:ro
+      - ./node_modules:/app/node_modules:ro
+      - ./package.json:/app/package.json:ro
+      - ./public:/app/public
+      - ./build:/app/build:ro
+      - ./tsconfig.json:/app/tsconfig.json:ro
+    environment:
+      DOCKERIZED: "true"
+      DEV_HOST: "front-hot"
+      DEV_PORT: "8080"
+      PROXY_URL: "http://web"
+    command: npm run hot
+    networks:
+      - app-network
+    ports:
+      - "8080:8080"
+
+volumes:
+  app-sync:
+    external: true

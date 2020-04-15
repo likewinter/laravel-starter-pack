@@ -19,3 +19,6 @@ _ide_helper*
 .phpstorm.meta.php
 composer.lock
 package-lock.json
+.idea
+.docker-sync/
+docker-compose.override.yml

@@ -2,10 +2,13 @@
     "private": true,
     "scripts": {
         "dev": "npm run development",
-        "development": "webpack --progress --hide-modules --config=webpack.dev.js",
+        "development": "webpack --progress --hide-modules --config=build/webpack.dev.js",
         "prod": "npm run production",
-        "production": "webpack --no-progress --hide-modules --config=webpack.prod.js",
-        "hot": "webpack-dev-server --inline --hot --config=webpack.hot.js"
+        "production": "webpack --no-progress --hide-modules --config=build/webpack.prod.js",
+        "hot": "webpack-dev-server --inline --hot --config=build/webpack.hot.js",
+        "docker:i": "./build/docker-run-node.sh -- npm i",
+        "docker:prod": "./build/docker-run-node.sh npm run prod",
+        "docker:dev": "./build/docker-run-node.sh -- npm run dev"
     },
     "devDependencies": {
         "@babel/core": "^7.5.5",
